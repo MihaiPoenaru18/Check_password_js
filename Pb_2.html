@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Parola impenetrabila</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+
+<script>
+    var p1 = document.getElementById("p1");
+     // const p1 = document.querySelector("p1");//password
+
+
+      function f1(){
+          var nr=0
+          var p1 = document.getElementById("p1");
+          var text = document.getElementById("text");
+          let upperCaseLetters = /[A-Z]/;
+          let lowerCaseLetters = /[a-z]/;
+          let numbers = /[0-9]/;
+          let symbols = /.[#,!,@,#,$,%,^,&,*,?,_,~,-,(,)]/;
+          // for(let i=0; i<9; i++){
+          if(p1.value.length<=4 && (p1.value.match(upperCaseLetters) || p1.value.match(lowerCaseLetters) || p1.value.match(numbers) || p1.value.match(symbols) ))nr=1
+              if(p1.value.length>4 && (p1.value.match(upperCaseLetters) && p1.value.match(lowerCaseLetters) || p1.value.match(numbers) || p1.value.match(symbols) ))nr=2
+              if(p1.value.length<8 && (p1.value.match(upperCaseLetters) && p1.value.match(lowerCaseLetters) && p1.value.match(numbers) || p1.value.match(symbols) ))nr=3
+              if(p1.value.length>=8 && (p1.value.match(upperCaseLetters) && p1.value.match(lowerCaseLetters) && p1.value.match(numbers) && p1.value.match(symbols) ))nr=4
+          //}
+          if(nr==1){
+              text.style.color="red"
+              text.innerText="Password is wear!"
+              text.innerText+="\n min 4 letters"
+          }
+          if(nr==2){
+              text.style.color="orange"
+              text.innerText="Password is medium!"
+              text.innerText+="\n Add upper case letters"
+          }
+          if(nr==3){
+              text.style.color="yellow"
+              text.innerText="Password is strong!"
+              text.innerText+="\n Add numbers or symbols"
+          }
+          if(nr==4){
+              text.style.color="#23ad5c"
+              text.innerText="Password is impenetrable!"
+             // submit(nr)
+          }
+
+     }
+
+     function show(){
+         var p1 = document.getElementById("p1");
+         if (p1.type === "password"  ) {
+             p1.type = "text";
+
+         } else {
+             p1.type = "password";
+
+         }
+     }
+ function f2(){
+          if(nr==4)alert("Comfirm password!!!")
+     else alert(nr)
+ }
+
+
+</script>
+</head>
+<body>
+
+<form onsubmit="submit()" >
+    <br>
+    <h3 align="center">Check password</h3>
+   <p align="center"> Password:<br> <input onkeyup="f1()" id="p1" type="password"  placeholder="Password" onclick="f1()"><br></p>
+    <p align="center"  ><input type="checkbox" onclick="show()" >Show</p>
+       <b>  <p align="center" id="text" ></p></b>
+
+   <p align="center" color="red"> <input  type="submit" value="OK" onclick="f2()"></p>
+     <br>
+
+</form>
+</body>
+</html>
